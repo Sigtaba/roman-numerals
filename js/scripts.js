@@ -1,46 +1,11 @@
 // // Back End Logic //
-//
-//     var I = 1
-// var II = 2
-// var III = 3
-// var IV = 4
-//     var V = 5
-// var VI = 6
-// var VII = 7
-// var VIII = 8
-// var IX = 9
-//     var X = 10
-// var XX = 20
-// var XXX = 30
-// var XL = 40
-//     var L = 50
-// var LX = 60
-// var LXX = 70
-// var LXXX = 80
-// var XC = 90
-//     var C = 100
-// var CC = 200
-// var CCC = 300
-// var CD = 400
-//     var D = 500
-// var DC = 600
-// var DCC = 700
-// var DCCC = 800
-// var CM = 900
-//     var M = 1000
-// var MM = 2000
-// var MMM = 3000
 
-// var arrayMain = [I, V, X, L, C, D, M]
-// var arraySubtract = [IV, IX, XL, XC, CD, CM]
-// var arrayAll = [I, II, III, IV, V, VI, VII, VIII, IX, X, XX, XXX, XL, L, LX, LXX, LXXX, XC, C, CC, CCC, CD, D, DC, DCC, DCCC, CM, M, MM, MMM]
 var arrayOnes = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
 var arrayTens = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"]
 var arrayHundreds = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"]
 var arrayThousands = ["", "M", "MM", "MMM"]
 var newArray = [];
 
-// for (var i = 0; i < arrayAll.length; i++) {
 function romanNumerals(userInput) {
   var newUserInput = [];
   var userInputAsNumber = parseInt(userInput);
@@ -58,6 +23,13 @@ function romanNumerals(userInput) {
     newUserInput.push(userInput[0].replace(userInput[0], arrayHundreds[parseInt(userInput)]));
     newUserInput.push(userInput[1].replace(userInput[1], arrayTens[parseInt(userInput[1])]));
     newUserInput.push(userInput[2].replace(userInput[2], arrayOnes[parseInt(userInput[2])]));
+    newUserInput = newUserInput.join("");
+  } else if (parseInt(userInputAsString) < 4000) {
+    console.log('hello from < 10000');
+    newUserInput.push(userInput[0].replace(userInput[0], arrayThousands[parseInt(userInput)]));
+    newUserInput.push(userInput[1].replace(userInput[1], arrayHundreds[parseInt(userInput[1])]));
+    newUserInput.push(userInput[2].replace(userInput[2], arrayTens[parseInt(userInput[2])]));
+    newUserInput.push(userInput[3].replace(userInput[3], arrayOnes[parseInt(userInput[3])]));
     newUserInput = newUserInput.join("");
   }
   return newUserInput;
