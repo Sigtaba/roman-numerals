@@ -35,9 +35,9 @@
 // var arraySubtract = [IV, IX, XL, XC, CD, CM]
 // var arrayAll = [I, II, III, IV, V, VI, VII, VIII, IX, X, XX, XXX, XL, L, LX, LXX, LXXX, XC, C, CC, CCC, CD, D, DC, DCC, DCCC, CM, M, MM, MMM]
 var arrayOnes = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
-// var arrayTens = [X, XX, XXX, XL, L, LX, LXX, LXXX, XC]
-// var arrayHundres = [C, CC, CCC, CD, D, DC, DCC, DCCC, CM]
-// var arrayThousands = [M, MM, MMM]
+var arrayTens = ["X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"]
+var arrayHundres = ["C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"]
+var arrayThousands = ["M", "MM", "MMM"]
 var newArray = [];
 
 // for (var i = 0; i < arrayAll.length; i++) {
@@ -45,7 +45,14 @@ function romanNumerals(userInput) {
   var newUserInput = [];
   var userInputAsString = userInput.toString();
   if (userInput < 10) {
-    newUserInput.push(userInputAsString.replace(userInputAsString.charAt(0), arrayOnes[(parseInt(userInput) - 1)]))
+    newUserInput.push(userInputAsString.replace(userInputAsString.charAt(0), arrayOnes[(userInput - 1)]))
+  } else if (parseInt(userInput) < 100) {
+    alert(userInput[0]);
+    newUserInput.push(userInput[0].replace(userInput[0], arrayTens[(parseInt(userInput) - 1)]));
+    newUserInput.push(userInput[1].replace(userInput[1], arrayOnes[(parseInt(userInput[1]) - 1)]));
+    newUserInput = newUserInput.join("");
+    alert("newUserInput 2:" + newUserInput);
+    alert("userInput 2:" + userInput)
   }
   return newUserInput;
 }
@@ -58,6 +65,8 @@ $(function() {
     if (userInput <= 0 || userInput > 3999)
     {
       alert("Please enter a number between 1 and 3999");
+    }else if (userInput > 10) {
+      userInput = userInput.toString().split("");
     }
     var result = romanNumerals(userInput);
     alert(result);
